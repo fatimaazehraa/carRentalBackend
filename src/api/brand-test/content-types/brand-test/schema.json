@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brand_tests",
+  "info": {
+    "singularName": "brand-test",
+    "pluralName": "brand-tests",
+    "displayName": "Brand",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "car_Brand": {
+      "type": "string"
+    },
+    "brand_Id": {
+      "type": "uid"
+    }
+  }
+}

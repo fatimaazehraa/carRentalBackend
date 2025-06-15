@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "features",
+  "info": {
+    "singularName": "feature",
+    "pluralName": "features",
+    "displayName": "Feature"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "feature_Id": {
+      "type": "uid"
+    },
+    "car_Id": {
+      "type": "uid"
+    },
+    "car_Name": {
+      "type": "string"
+    },
+    "Model": {
+      "type": "string"
+    },
+    "vehicle_Number": {
+      "type": "string"
+    },
+    "Insurance": {
+      "type": "boolean"
+    },
+    "minimum_Age": {
+      "type": "integer"
+    },
+    "kms_Travelled": {
+      "type": "integer"
+    }
+  }
+}

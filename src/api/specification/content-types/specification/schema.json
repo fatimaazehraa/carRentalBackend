@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "specifications",
+  "info": {
+    "singularName": "specification",
+    "pluralName": "specifications",
+    "displayName": "Specification",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "spec_Id": {
+      "type": "uid"
+    },
+    "car_Name": {
+      "type": "string"
+    },
+    "Engine": {
+      "type": "string"
+    },
+    "Mode": {
+      "type": "string"
+    },
+    "Color": {
+      "type": "string"
+    },
+    "persons_Allowed": {
+      "type": "string"
+    },
+    "luggage_Capacity": {
+      "type": "string"
+    },
+    "collision_Warning": {
+      "type": "string"
+    },
+    "Bluetooth": {
+      "type": "string"
+    },
+    "driver_Monitoring": {
+      "type": "string"
+    },
+    "Camera": {
+      "type": "string"
+    },
+    "LCD": {
+      "type": "string"
+    },
+    "safety_Assistance": {
+      "type": "string"
+    },
+    "Volume": {
+      "type": "string"
+    },
+    "Music": {
+      "type": "string"
+    },
+    "Doors": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

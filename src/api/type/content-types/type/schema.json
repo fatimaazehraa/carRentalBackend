@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "types",
+  "info": {
+    "singularName": "type",
+    "pluralName": "types",
+    "displayName": "Type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "type_Id": {
+      "type": "uid"
+    },
+    "car_Type": {
+      "type": "string"
+    },
+    "type_Description": {
+      "type": "string"
+    }
+  }
+}

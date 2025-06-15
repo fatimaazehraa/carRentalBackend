@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "CarDetails",
+    "description": "Create your blog content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "car_Id": {
+      "type": "uid"
+    },
+    "car_Name": {
+      "type": "string"
+    },
+    "car_Description": {
+      "type": "text"
+    },
+    "car_Category": {
+      "type": "string"
+    },
+    "car_Type": {
+      "type": "string"
+    },
+    "car_Brand": {
+      "type": "string"
+    },
+    "rent_Amount": {
+      "type": "integer"
+    },
+    "car_Features": {
+      "type": "text"
+    },
+    "Availability": {
+      "type": "boolean"
+    },
+    "test1": {
+      "type": "string"
+    }
+  }
+}
