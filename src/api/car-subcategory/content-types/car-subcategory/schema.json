@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "car_subcategories",
+  "info": {
+    "singularName": "car-subcategory",
+    "pluralName": "car-subcategories",
+    "displayName": "car_subcategory",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "categorySubType": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "car_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car-category.car-category",
+      "inversedBy": "car_subcategories"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "categorySubType",
+      "required": true
+    },
+    "cars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car.car",
+      "mappedBy": "car_subcategory"
+    }
+  }
+}

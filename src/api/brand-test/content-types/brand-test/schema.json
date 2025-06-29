@@ -16,6 +16,25 @@
     },
     "brand_Id": {
       "type": "uid"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "cars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car.car",
+      "mappedBy": "brand"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "car_Brand",
+      "required": true
     }
   }
 }

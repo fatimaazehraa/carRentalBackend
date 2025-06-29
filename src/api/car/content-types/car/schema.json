@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cars",
+  "info": {
+    "singularName": "car",
+    "pluralName": "cars",
+    "displayName": "Car",
+    "description": "Car listings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "pricePerDay": {
+      "type": "integer"
+    },
+    "deposit": {
+      "type": "integer"
+    },
+    "engineType": {
+      "type": "string"
+    },
+    "seats": {
+      "type": "integer"
+    },
+    "doors": {
+      "type": "integer"
+    },
+    "airConditioning": {
+      "type": "boolean"
+    },
+    "bluetooth": {
+      "type": "boolean"
+    },
+    "kilometersPerDay": {
+      "type": "integer"
+    },
+    "salikTollFee": {
+      "type": "integer"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand-test.brand-test",
+      "inversedBy": "cars"
+    },
+    "car_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car-category.car-category",
+      "inversedBy": "cars"
+    },
+    "car_subcategory": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::car-subcategory.car-subcategory",
+      "inversedBy": "cars"
+    }
+  }
+}

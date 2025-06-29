@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "car_categories",
+  "info": {
+    "singularName": "car-category",
+    "pluralName": "car-categories",
+    "displayName": "car_category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "cartype": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "cartype"
+    },
+    "car_subcategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car-subcategory.car-subcategory",
+      "mappedBy": "car_category"
+    },
+    "cars": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::car.car",
+      "mappedBy": "car_category"
+    }
+  }
+}

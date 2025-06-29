@@ -454,6 +454,7 @@ export interface ApiBrandTestBrandTest extends Struct.CollectionTypeSchema {
   attributes: {
     brand_Id: Schema.Attribute.UID;
     car_Brand: Schema.Attribute.String;
+    cars: Schema.Attribute.Relation<'oneToMany', 'api::car.car'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -463,7 +464,142 @@ export interface ApiBrandTestBrandTest extends Struct.CollectionTypeSchema {
       'api::brand-test.brand-test'
     > &
       Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'car_Brand'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCarCategoryCarCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'car_categories';
+  info: {
+    description: '';
+    displayName: 'car_category';
+    pluralName: 'car-categories';
+    singularName: 'car-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    car_subcategories: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::car-subcategory.car-subcategory'
+    >;
+    cars: Schema.Attribute.Relation<'oneToMany', 'api::car.car'>;
+    cartype: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::car-category.car-category'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'cartype'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCarSubcategoryCarSubcategory
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'car_subcategories';
+  info: {
+    description: '';
+    displayName: 'car_subcategory';
+    pluralName: 'car-subcategories';
+    singularName: 'car-subcategory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    car_category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::car-category.car-category'
+    >;
+    cars: Schema.Attribute.Relation<'oneToMany', 'api::car.car'>;
+    categorySubType: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::car-subcategory.car-subcategory'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'categorySubType'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCarCar extends Struct.CollectionTypeSchema {
+  collectionName: 'cars';
+  info: {
+    description: 'Car listings';
+    displayName: 'Car';
+    pluralName: 'cars';
+    singularName: 'car';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    airConditioning: Schema.Attribute.Boolean;
+    bluetooth: Schema.Attribute.Boolean;
+    brand: Schema.Attribute.Relation<'manyToOne', 'api::brand-test.brand-test'>;
+    car_category: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::car-category.car-category'
+    >;
+    car_subcategory: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::car-subcategory.car-subcategory'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    deposit: Schema.Attribute.Integer;
+    description: Schema.Attribute.RichText;
+    doors: Schema.Attribute.Integer;
+    engineType: Schema.Attribute.String;
+    images: Schema.Attribute.Media<undefined, true> & Schema.Attribute.Required;
+    kilometersPerDay: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::car.car'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    pricePerDay: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    salikTollFee: Schema.Attribute.Integer;
+    seats: Schema.Attribute.Integer;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1157,6 +1293,9 @@ declare module '@strapi/strapi' {
       'api::about.about': ApiAboutAbout;
       'api::article.article': ApiArticleArticle;
       'api::brand-test.brand-test': ApiBrandTestBrandTest;
+      'api::car-category.car-category': ApiCarCategoryCarCategory;
+      'api::car-subcategory.car-subcategory': ApiCarSubcategoryCarSubcategory;
+      'api::car.car': ApiCarCar;
       'api::category.category': ApiCategoryCategory;
       'api::feature.feature': ApiFeatureFeature;
       'api::global.global': ApiGlobalGlobal;
