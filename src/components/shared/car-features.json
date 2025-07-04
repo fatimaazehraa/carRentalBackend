@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_car_features",
+  "info": {
+    "displayName": "car_features"
+  },
+  "options": {},
+  "attributes": {
+    "en": {
+      "type": "string"
+    },
+    "engine_type": {
+      "type": "string"
+    }
+  }
+}
