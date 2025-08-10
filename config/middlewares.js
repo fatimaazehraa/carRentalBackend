@@ -4,9 +4,12 @@ module.exports = [
   {
     name: 'strapi::cors',
     config: {
-      origin: ['http://localhost:5173'], // or use '*' just for testing
-      methods: ['GET', 'POST', 'PUT', 'DELETE'],
-      headers: ['Content-Type', 'Authorization'],
+      enabled: true,
+      origin: process.env.NODE_ENV === 'production'
+        ? ['*'] // TEMP: allow all in production until frontend URL is ready
+        : ['http://localhost:5173'], // Dev origin
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+      headers: ['Content-Type', 'Authorization', 'Origin', 'Accept'],
     },
   },
   'strapi::poweredBy',

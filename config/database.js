@@ -1,40 +1,18 @@
-const path = require("path");
-const parse = require("pg-connection-string").parse;
-
-module.exports = ({ env }) => {
-  // Use Postgres in production if DATABASE_URL is provided
-  if (env("DATABASE_URL")) {
-    const config = parse(env("DATABASE_URL"));
-    return {
+    // strapi-api/config/database.js
+    module.exports = ({ env }) => ({
       connection: {
-        client: "postgres",
+        client: 'postgres',
         connection: {
-          host: config.host,
-          port: config.port,
-          database: config.database,
-          user: config.user,
-          password: config.password,
+          host: env('DATABASE_HOST'),
+          port: env.int('DATABASE_PORT'),
+          database: env('DATABASE_NAME'),
+          user: env('DATABASE_USERNAME'),
+          password: env('DATABASE_PASSWORD'),
+          schema: env('DATABASE_SCHEMA', 'public'), // Not required
           ssl: {
-            rejectUnauthorized: false, // Needed for Render's TLS
+            rejectUnauthorized: env.bool('DATABASE_SSL_SELF', false),
           },
         },
-        pool: { min: 2, max: 10 },
+        debug: false,
       },
-    };
-  }
-
-  // Fallback: SQLite for local development
-  return {
-    connection: {
-      client: "sqlite",
-      connection: {
-        filename: path.join(
-          __dirname,
-          "..",
-          env("DATABASE_FILENAME", ".tmp/data.db")
-        ),
-      },
-      useNullAsDefault: true,
-    },
-  };
-};
+    });
