@@ -5,7 +5,7 @@ module.exports = [
     name: "strapi::cors",
     config: {
       enabled: true,
-      origin:
+      origins:
         process.env.NODE_ENV === "production"
           ? ["*"] // TEMP: allow all in production until frontend URL is ready
           : ["http://localhost:5173"], // Dev origin
